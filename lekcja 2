@@ -1,0 +1,47 @@
+Marceli Budner io1
+
+Zadanie 1
+a)
+DELETE FROM postac WHERE wiek>50 AND NOT nazwa='Bjorn';
+b)
+ALTER TABLE postac MODIFY id_postaci int;
+ALTER TABLE przetwory DROP FOREIGN KEY fk_konsument;
+ALTER TABLE przetwory DROP FOREIGN KEY fk_wykonawca;
+ALTER TABLE postac MODIFY id_postaci int DEFAULT null;
+ALTER TABLE postac DROP PRIMARY KEY;
+
+Zadanie 2
+a)
+ALTER TABLE postac ADD COLUMN pesel int(11) PRIMARY KEY auto_increment;
+b)
+ALTER table postac MODIFY rodzaj enum('wiking','ptak','kobieta','syrena');
+c)
+INSERT INTO postac(nazwa,rodzaj) VALUES ('Gertruda Nieszczera','syrena');
+
+Zadanie 3
+a)
+UPDATE postac SET statek = 'bobo' WHERE nazwa LIKE '%a%';
+b)
+UPDATE statek SET max_ladownosc='30' WHERE data_wodowania>'1900-01-01';
+c)
+SELECT * FROM postac WHERE wiek>1000;
+
+Zadanie 4
+a)
+INSERT INTO postac(nazwa) VALUES ('Loko');
+b)
+CREATE TABLE marynarz(id_postaci int, nazwa varchar(40),rodzaj enum('wiking','ptak','kobieta','syrena'), data_ur date, wiek int UNSINGED, funkcja varchar(40), statek varchar(40), pesel int);
+c)
+INSERT INTO marynarz SELECT * FROM postac WHERE statek is not null;
+
+Zadanie 5
+a)
+UPDATE marynarz SET statek='NULL';
+b)
+DELETE FROM marynarz WHERE rodzaj='wiking' AND nazwa LIKE='&FLOKI%';
+ALTER TABLE marynarz DROP statek;
+e)
+CREATE TABLE zwierz(id_zwierza int AUTO_INCREMENT PRIMARY KEY,nazwa varchar(40), wiek int);
+f)
+INSERT INTO zwierz SELECT nazwa FROM postac WHERE rodzaj='syrena' OR rodzaj='waz';
+
